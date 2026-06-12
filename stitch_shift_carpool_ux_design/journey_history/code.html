@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Shift Carpool - My Journeys</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed-variant": "#474649",
+                      "on-secondary-container": "#b6b4b7",
+                      "outline-variant": "#44474a",
+                      "surface-container-low": "#1c1b1b",
+                      "on-tertiary-fixed": "#1f1b17",
+                      "on-error": "#690005",
+                      "primary-container": "#e2e2e4",
+                      "on-primary-container": "#636466",
+                      "tertiary-container": "#ebe0db",
+                      "secondary-fixed": "#e4e2e4",
+                      "on-secondary-fixed": "#1b1b1d",
+                      "surface-container-high": "#2a2a2a",
+                      "surface-container-lowest": "#0e0e0e",
+                      "background": "#141313",
+                      "tertiary-fixed": "#ebe0db",
+                      "surface-container-highest": "#353434",
+                      "primary-fixed-dim": "#c6c6c8",
+                      "on-secondary": "#303032",
+                      "on-primary-fixed-variant": "#454749",
+                      "tertiary": "#ffffff",
+                      "secondary-fixed-dim": "#c8c6c8",
+                      "surface-variant": "#353434",
+                      "on-surface": "#e5e2e1",
+                      "surface-dim": "#141313",
+                      "surface-container": "#201f1f",
+                      "outline": "#8f9194",
+                      "on-background": "#e5e2e1",
+                      "on-primary": "#2f3132",
+                      "primary-fixed": "#e2e2e4",
+                      "surface-tint": "#c6c6c8",
+                      "error": "#ffb4ab",
+                      "on-tertiary-fixed-variant": "#4c4641",
+                      "inverse-primary": "#5d5e60",
+                      "secondary-container": "#474649",
+                      "on-tertiary-container": "#6a635e",
+                      "on-error-container": "#ffdad6",
+                      "surface-bright": "#3a3939",
+                      "on-tertiary": "#352f2c",
+                      "on-primary-fixed": "#1a1c1d",
+                      "secondary": "#c8c6c8",
+                      "primary": "#ffffff",
+                      "on-surface-variant": "#c5c7c9",
+                      "inverse-on-surface": "#313030",
+                      "tertiary-fixed-dim": "#cec5bf",
+                      "inverse-surface": "#e5e2e1",
+                      "surface": "#141313",
+                      "error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "md": "16px",
+                      "gutter": "16px",
+                      "xs": "8px",
+                      "container-padding": "20px",
+                      "base": "4px",
+                      "sm": "12px",
+                      "xl": "32px",
+                      "lg": "24px"
+              },
+              "fontFamily": {
+                      "title-md": [
+                              "Inter"
+                      ],
+                      "display": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "title-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display": [
+                              "40px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.25",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen pb-24 font-body-lg text-body-lg">
+<!-- Top App Bar -->
+<header class="w-full top-0 sticky z-40 bg-background flex items-center justify-between px-gutter py-md">
+<button aria-label="Menu" class="text-primary hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+<h1 class="font-display text-display tracking-tighter text-primary">Shift</h1>
+<button aria-label="Settings" class="text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</header>
+<main class="px-gutter pt-4 md:px-lg max-w-4xl mx-auto">
+<!-- Page Title -->
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg mb-6">My Journeys</h2>
+<!-- Tabs -->
+<div class="flex space-x-2 bg-surface-container-high p-1 rounded-xl mb-8 relative">
+<button class="flex-1 py-2 px-4 rounded-lg font-title-md text-title-md text-center relative z-10 transition-all duration-300 text-on-surface-variant" id="tab-upcoming">
+                Upcoming
+            </button>
+<button class="flex-1 py-2 px-4 rounded-lg font-title-md text-title-md text-center hover:text-on-surface transition-colors duration-300 relative z-10 bg-surface text-on-surface shadow-sm" id="tab-history">
+                History
+            </button>
+<!-- Animated background indicator would go here for complex interactions -->
+</div>
+<!-- Upcoming Content Area -->
+<div class="space-y-4 hidden" id="content-upcoming">
+<!-- Driving Card -->
+<div class="bg-surface-container rounded-xl p-container-padding border border-surface-container-high transition-transform duration-200 hover:border-outline-variant">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">directions_car</span>
+<span class="font-label-caps text-label-caps text-primary tracking-widest uppercase">Driving</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Today</span>
+</div>
+<div class="mb-6">
+<div class="flex items-center space-x-4 mb-2">
+<span class="font-title-md text-title-md text-on-surface w-20">08:30 AM</span>
+<div class="flex-1 flex items-center space-x-2">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+<span class="font-body-lg text-body-lg text-on-surface-variant">Origin Colony</span>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<span class="font-title-md text-title-md text-on-surface w-20">09:15 AM</span>
+<div class="flex-1 flex items-center space-x-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="font-body-lg text-body-lg text-on-surface">Tech Hub</span>
+</div>
+</div>
+<!-- Connecting line visualization placeholder -->
+<div class="absolute left-[7.5rem] top-24 bottom-24 w-0.5 bg-surface-container-high -z-10 hidden sm:block"></div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-surface-container-high">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">group</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">2 Passengers</span>
+</div>
+<button class="bg-primary text-on-primary font-title-md text-title-md px-4 py-2 rounded-lg hover:opacity-90 active:scale-95 transition-all">
+                        Manage Route
+                    </button>
+</div>
+</div>
+<!-- Riding Card -->
+<div class="bg-surface-container rounded-xl p-container-padding border border-surface-container-high transition-transform duration-200 hover:border-outline-variant">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">directions_run</span>
+<span class="font-label-caps text-label-caps text-primary tracking-widest uppercase">Riding</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Tomorrow</span>
+</div>
+<div class="mb-6">
+<div class="flex items-center space-x-4 mb-2">
+<span class="font-title-md text-title-md text-on-surface w-20">09:15 AM</span>
+<div class="flex-1 flex items-center space-x-2">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+<span class="font-body-lg text-body-lg text-on-surface-variant">Westside Plaza</span>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<span class="font-title-md text-title-md text-on-surface w-20">09:45 AM</span>
+<div class="flex-1 flex items-center space-x-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="font-body-lg text-body-lg text-on-surface">Downtown</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-surface-container-high">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden relative">
+<img alt="Sarah Driver Profile" class="w-full h-full object-cover" data-alt="A small circular profile picture of an individual driving. The portrait is high quality, lit with soft daylight, set against a dark premium UI background tone. The image style is realistic, professional, and trustworthy, aligning with the quiet luxury aesthetic of the dark mode carpooling app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzaB0azJfNcpvtSQh-_3wogprOz2JqK4WaJs2Ck6a4_Qithh8HTa-AoNP-a9IAHRpfhYvRFWc2Q8bEze56-U1cLh7O71rjjGHR0ZlJTedT4lvt21dRvp1xky7SZudlb618qmGYT2lBn40vwAvKBd66QmgiYR2ZCcD_g6rBLls8kMKCn1OH6NTDeysnYBtXnfUidHMkr43tgQZ6epNgf3VrvtnjOa0AhP96b2adYbXhOQRl7251LnISQe7oNX9Yk3Y7uLYT24Y086g"/>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Driver: Sarah</span>
+</div>
+<button class="bg-surface-container-high border border-outline-variant text-on-surface font-title-md text-title-md px-4 py-2 rounded-lg hover:bg-surface-container-highest active:scale-95 transition-all">
+                        View Details
+                    </button>
+</div>
+</div>
+</div>
+<!-- History Content Area (Hidden by default in this static view, toggled via JS) -->
+<div class="space-y-4" id="content-history"><div class="bg-surface-container rounded-xl p-container-padding border border-surface-container-high"><div class="flex justify-between items-start mb-2"><span class="font-label-caps text-label-caps text-on-surface-variant">Oct 20, 2023</span><span class="font-label-caps text-label-caps text-primary">Completed</span></div><div class="font-title-md text-title-md text-on-surface mb-4">Origin Colony to Tech Hub</div><div class="flex items-center justify-between pt-4 border-t border-surface-container-high"><div class="flex items-center space-x-2"><span class="material-symbols-outlined text-on-surface-variant text-sm">group</span><span class="font-body-sm text-body-sm text-on-surface-variant">3 Passengers</span></div><span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Driving</span></div></div><div class="bg-surface-container rounded-xl p-container-padding border border-surface-container-high"><div class="flex justify-between items-start mb-2"><span class="font-label-caps text-label-caps text-on-surface-variant">Oct 18, 2023</span><span class="font-label-caps text-label-caps text-on-surface-variant">Completed</span></div><div class="font-title-md text-title-md text-on-surface mb-4">Westside Plaza to Downtown</div><div class="flex items-center justify-between pt-4 border-t border-surface-container-high"><div class="flex items-center space-x-3"><div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden"><img alt="Driver Sarah" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzaB0azJfNcpvtSQh-_3wogprOz2JqK4WaJs2Ck6a4_Qithh8HTa-AoNP-a9IAHRpfhYvRFWc2Q8bEze56-U1cLh7O71rjjGHR0ZlJTedT4lvt21dRvp1xky7SZudlb618qmGYT2lBn40vwAvKBd66QmgiYR2ZCcD_g6rBLls8kMKCn1OH6NTDeysnYBtXnfUidHMkr43tgQZ6epNgf3VrvtnjOa0AhP96b2adYbXhOQRl7251LnISQe7oNX9Yk3Y7uLYT24Y086g"/></div><span class="font-body-sm text-body-sm text-on-surface-variant">Driver: Sarah</span></div><span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Riding</span></div></div><div class="bg-surface-container rounded-xl p-container-padding border border-surface-container-high opacity-70"><div class="flex justify-between items-start mb-2"><span class="font-label-caps text-label-caps text-on-surface-variant">Oct 15, 2023</span><span class="font-label-caps text-label-caps text-error">Cancelled</span></div><div class="font-title-md text-title-md text-on-surface mb-4">North Hills to Tech Hub</div><div class="flex items-center justify-between pt-4 border-t border-surface-container-high"><div class="flex items-center space-x-2"><span class="material-symbols-outlined text-on-surface-variant text-sm">group</span><span class="font-body-sm text-body-sm text-on-surface-variant">2 Passengers</span></div><span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Driving</span></div></div></div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-md py-sm pb-8 bg-surface-container md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 duration-200 px-4 py-1" href="#">
+<span class="material-symbols-outlined mb-1">explore</span>
+<span class="font-label-caps text-label-caps">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-full px-4 py-1 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">route</span>
+<span class="font-label-caps text-label-caps">My Route</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 duration-200 px-4 py-1" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+<!-- Simple Tab Interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabUpcoming = document.getElementById('tab-upcoming');
+            const tabHistory = document.getElementById('tab-history');
+            const contentUpcoming = document.getElementById('content-upcoming');
+            const contentHistory = document.getElementById('content-history');
+
+            tabUpcoming.addEventListener('click', () => {
+                // Update Tabs
+                tabUpcoming.classList.add('bg-surface', 'text-on-surface', 'shadow-sm');
+                tabUpcoming.classList.remove('text-on-surface-variant');
+                
+                tabHistory.classList.remove('bg-surface', 'text-on-surface', 'shadow-sm');
+                tabHistory.classList.add('text-on-surface-variant');
+
+                // Update Content
+                contentUpcoming.classList.remove('hidden');
+                contentHistory.classList.add('hidden');
+            });
+
+            tabHistory.addEventListener('click', () => {
+                // Update Tabs
+                tabHistory.classList.add('bg-surface', 'text-on-surface', 'shadow-sm');
+                tabHistory.classList.remove('text-on-surface-variant');
+                
+                tabUpcoming.classList.remove('bg-surface', 'text-on-surface', 'shadow-sm');
+                tabUpcoming.classList.add('text-on-surface-variant');
+
+                // Update Content
+                contentHistory.classList.remove('hidden');
+                contentUpcoming.classList.add('hidden');
+            });
+        });
+    </script>
+</body></html>

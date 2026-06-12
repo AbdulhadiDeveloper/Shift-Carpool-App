@@ -1,0 +1,20 @@
+# Sensitive files
+.env
+.env.*
+*.pem
+*.key
+
+# Dependencies
+node_modules/
+
+# Build and IDE
+dist/
+build/
+.expo/
+.vercel
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
