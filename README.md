@@ -63,17 +63,23 @@ Shift is a minimalist, full-stack mobile ridesharing application built with a fo
     ```
 2.  Install dependencies:
     ```bash
-    npm install
+    npm install --legacy-peer-deps
     ```
-3.  Update the `API_URL` in `mobile/src/store/store.ts`:
-    ```typescript
-    const API_URL = 'http://YOUR_LOCAL_IP:3000/api'; // Or your Vercel URL
+3.  Create a `.env` file in the `mobile/` root:
+    ```env
+    EXPO_PUBLIC_API_URL = 'http://YOUR_LOCAL_IP:3000/api'; // Or your Vercel URL
     ```
-4.  Start the app:
+4.  Start the app in web:
     ```bash
     npx expo start
     ```
-5.  Open the **Expo Go** app on your iOS/Android device and scan the QR code.
+
+5.  Start the app in expo go app:
+    ```bash
+    npx expo start --tunnel --clear
+    ```
+    
+6.  Open the **Expo Go** app on your iOS/Android device and scan the QR code.
 
 ---
 
