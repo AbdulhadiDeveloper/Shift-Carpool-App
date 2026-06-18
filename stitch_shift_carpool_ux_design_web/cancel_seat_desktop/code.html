@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cancel Seat - Shift Carpool</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#44474a",
+                        "background": "#141313",
+                        "on-surface": "#e5e2e1",
+                        "surface-variant": "#353434",
+                        "surface-container-highest": "#353434",
+                        "on-primary-fixed": "#1a1c1d",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-container": "#b6b4b7",
+                        "surface-dim": "#141313",
+                        "on-primary-container": "#636466",
+                        "on-surface-variant": "#c5c7c9",
+                        "primary-fixed-dim": "#c6c6c8",
+                        "outline": "#8f9194",
+                        "surface-container-high": "#2a2a2a",
+                        "on-secondary-fixed-variant": "#474649",
+                        "inverse-on-surface": "#313030",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-fixed-variant": "#4c4641",
+                        "tertiary-container": "#ebe0db",
+                        "on-primary": "#2f3132",
+                        "surface-tint": "#c6c6c8",
+                        "on-secondary": "#303032",
+                        "surface-container": "#201f1f",
+                        "secondary-container": "#474649",
+                        "on-tertiary": "#352f2c",
+                        "primary-container": "#e2e2e4",
+                        "on-background": "#e5e2e1",
+                        "primary-fixed": "#e2e2e4",
+                        "inverse-primary": "#5d5e60",
+                        "error": "#ffb4ab",
+                        "surface-container-low": "#1c1b1b",
+                        "primary": "#ffffff",
+                        "on-secondary-fixed": "#1b1b1d",
+                        "on-primary-fixed-variant": "#454749",
+                        "tertiary": "#ffffff",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-bright": "#3a3939",
+                        "surface": "#141313",
+                        "secondary": "#c8c6c8",
+                        "on-tertiary-container": "#6a635e",
+                        "tertiary-fixed": "#ebe0db",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "secondary-fixed-dim": "#c8c6c8",
+                        "tertiary-fixed-dim": "#cec5bf",
+                        "secondary-fixed": "#e4e2e4",
+                        "on-tertiary-fixed": "#1f1b17"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "xs": "8px",
+                        "container-padding": "20px",
+                        "md": "16px",
+                        "gutter": "16px",
+                        "base": "4px",
+                        "lg": "24px",
+                        "sm": "12px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "title-md": ["Inter"],
+                        "display": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "title-md": ["20px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "display": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #141313; color: #e5e2e1; }
+        .bento-card {
+            background-color: #1c1b1b;
+            border: 1px solid #353434;
+            border-radius: 0.75rem;
+            padding: 20px;
+        }
+        
+        /* Custom Radio Button Styles */
+        input[type="radio"] {
+            appearance: none;
+            background-color: transparent;
+            margin: 0;
+            font: inherit;
+            color: currentColor;
+            width: 1.15em;
+            height: 1.15em;
+            border: 1px solid #8f9194;
+            border-radius: 50%;
+            display: grid;
+            place-content: center;
+        }
+
+        input[type="radio"]::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em #ffffff;
+        }
+
+        input[type="radio"]:checked::before {
+            transform: scale(1);
+        }
+        
+        input[type="radio"]:checked {
+            border-color: #ffffff;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans antialiased">
+<!-- TopNavBar (Shared Component) - Suppressed per Semantic Shell Mandate (Transactional Screen) -->
+<!-- Navigation is hidden as this is a focused, high-stakes transactional flow -->
+<header class="w-full sticky top-0 bg-background z-50 py-md px-xl flex items-center justify-between">
+<div class="text-title-md font-title-md font-bold tracking-tight text-primary">Shift Carpool</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[20px]">close</span>
+<span class="font-label-caps text-label-caps uppercase">Close</span>
+</button>
+</header>
+<main class="flex-grow flex items-center justify-center p-xl">
+<div class="w-full max-w-2xl">
+<!-- Header Section -->
+<div class="text-center mb-xl">
+<span class="material-symbols-outlined text-display text-error mb-sm inline-block" style="font-variation-settings: 'FILL' 1;">warning</span>
+<h1 class="font-headline-lg text-headline-lg text-primary mb-xs">Cancel Seat</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Are you sure you want to forfeit your seat on this journey?</p>
+</div>
+<!-- Main Content Card -->
+<div class="bento-card mb-lg shadow-2xl">
+<!-- Journey Context -->
+<div class="flex flex-col md:flex-row gap-lg mb-lg border-b border-surface-variant pb-lg">
+<div class="flex-shrink-0">
+<img class="w-16 h-16 rounded-full object-cover border border-outline-variant" data-alt="A cinematic, high-contrast portrait of a professional driver in a dark mode setting. The driver is looking slightly off-camera with a calm, composed expression. Soft, subtle rim lighting defines their silhouette against a deep charcoal background, emphasizing a sense of quiet luxury and reliability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGlPRJqpmokYKNItxrWF7xlKb6_R56aj5UztnrErRNCgHAz-ijoQakbip_UUfU4dQ_uH68gpOUxHAx3l04GC4FCsrP5xrW28TNN_WjeUTDFUezRakw9vlymCOUYjTmKO-QbN3PdFrRWYX3WAMPLYR6icOvOtKcDVf9bYJG_2IA3wTdq27atJTg1tOISwa9RJecKVtzUrD-xzJY4CMWvakXes1xTaMo15vRqN8AyhbMAOlTq71oBDycHdEGuW4hENy-GNFipzWqiY4"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-xs">
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-base">Driver</div>
+<div class="font-title-md text-title-md text-primary">Elena Rodriguez</div>
+</div>
+<div class="text-right">
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-base">Vehicle</div>
+<div class="font-body-sm text-body-sm text-primary">Tesla Model Y \u2022 Black</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-sm mt-sm bg-surface-container-low p-sm rounded-lg border border-surface-variant">
+<div>
+<div class="flex items-center gap-xs text-on-surface-variant mb-base">
+<span class="material-symbols-outlined text-[16px]">trip_origin</span>
+<span class="font-label-caps text-label-caps uppercase">Pickup</span>
+</div>
+<div class="font-body-sm text-body-sm text-primary">08:00 AM \u2022 The Grand Plaza</div>
+</div>
+<div>
+<div class="flex items-center gap-xs text-on-surface-variant mb-base">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="font-label-caps text-label-caps uppercase">Drop-off</span>
+</div>
+<div class="font-body-sm text-body-sm text-primary">09:15 AM \u2022 Tech Hub District</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Cancellation Reason -->
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-sm">Reason for Cancellation</div>
+<div class="space-y-sm">
+<label class="flex items-center gap-md p-sm rounded-lg border border-surface-variant hover:border-outline-variant cursor-pointer transition-colors bg-surface-container-low">
+<input class="text-primary focus:ring-primary" name="cancel_reason" type="radio" value="schedule_change"/>
+<span class="font-body-lg text-body-lg text-primary">My schedule changed</span>
+</label>
+<label class="flex items-center gap-md p-sm rounded-lg border border-surface-variant hover:border-outline-variant cursor-pointer transition-colors bg-surface-container-low">
+<input class="text-primary focus:ring-primary" name="cancel_reason" type="radio" value="alternative_transport"/>
+<span class="font-body-lg text-body-lg text-primary">Found alternative transport</span>
+</label>
+<label class="flex items-center gap-md p-sm rounded-lg border border-surface-variant hover:border-outline-variant cursor-pointer transition-colors bg-surface-container-low">
+<input class="text-primary focus:ring-primary" name="cancel_reason" type="radio" value="driver_delay"/>
+<span class="font-body-lg text-body-lg text-primary">Driver is significantly delayed</span>
+</label>
+<label class="flex items-center gap-md p-sm rounded-lg border border-surface-variant hover:border-outline-variant cursor-pointer transition-colors bg-surface-container-low">
+<input class="text-primary focus:ring-primary" name="cancel_reason" type="radio" value="other"/>
+<span class="font-body-lg text-body-lg text-primary">Other</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row gap-md justify-end">
+<button class="px-lg py-sm font-body-lg text-body-lg font-medium text-primary bg-transparent border border-outline-variant rounded-full hover:bg-surface-variant transition-colors w-full sm:w-auto text-center">
+                    Keep My Seat
+                </button>
+<button class="px-lg py-sm font-body-lg text-body-lg font-medium text-background bg-error rounded-full hover:opacity-90 transition-opacity w-full sm:w-auto text-center shadow-lg">
+                    Confirm Cancellation
+                </button>
+</div>
+<p class="text-center mt-md font-body-sm text-body-sm text-on-surface-variant">
+                Cancellation fees may apply depending on timing.
+            </p>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-background dark:bg-background w-full mt-auto flex flex-col md:flex-row justify-between items-center py-xl px-xl border-t border-outline-variant">
+<div class="text-label-caps font-label-caps text-primary mb-md md:mb-0">
+            Shift Carpool
+        </div>
+<div class="flex gap-lg font-body-sm text-body-sm text-on-surface-variant dark:text-on-surface-variant">
+<a class="hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors duration-200" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors duration-200" href="#">Help Center</a>
+<a class="hover:text-primary transition-colors duration-200" href="#">Contact</a>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant dark:text-on-surface-variant mt-md md:mt-0">
+            © 2024 Shift Carpool. The Art of the Shared Journey.
+        </div>
+</footer>
+</body></html>

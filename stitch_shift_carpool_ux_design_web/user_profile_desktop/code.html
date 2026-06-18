@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Shift Carpool - Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#474649",
+                        "tertiary-fixed-dim": "#cec5bf",
+                        "surface-container": "#201f1f",
+                        "surface-bright": "#3a3939",
+                        "tertiary-fixed": "#ebe0db",
+                        "surface-tint": "#c6c6c8",
+                        "inverse-on-surface": "#313030",
+                        "secondary-container": "#474649",
+                        "secondary-fixed-dim": "#c8c6c8",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#4c4641",
+                        "error": "#ffb4ab",
+                        "on-background": "#e5e2e1",
+                        "on-surface-variant": "#c5c7c9",
+                        "background": "#141313",
+                        "surface-variant": "#353434",
+                        "inverse-primary": "#5d5e60",
+                        "surface-container-low": "#1c1b1b",
+                        "primary-container": "#e2e2e4",
+                        "outline": "#8f9194",
+                        "primary-fixed": "#e2e2e4",
+                        "on-primary-fixed-variant": "#454749",
+                        "surface": "#141313",
+                        "on-tertiary-fixed": "#1f1b17",
+                        "on-surface": "#e5e2e1",
+                        "surface-container-lowest": "#0e0e0e",
+                        "inverse-surface": "#e5e2e1",
+                        "error-container": "#93000a",
+                        "surface-container-highest": "#353434",
+                        "on-tertiary": "#352f2c",
+                        "surface-container-high": "#2a2a2a",
+                        "outline-variant": "#44474a",
+                        "on-primary": "#2f3132",
+                        "primary-fixed-dim": "#c6c6c8",
+                        "on-primary-fixed": "#1a1c1d",
+                        "primary": "#ffffff",
+                        "secondary-fixed": "#e4e2e4",
+                        "secondary": "#c8c6c8",
+                        "tertiary-container": "#ebe0db",
+                        "tertiary": "#ffffff",
+                        "on-primary-container": "#636466",
+                        "on-secondary-container": "#b6b4b7",
+                        "surface-dim": "#141313",
+                        "on-secondary-fixed": "#1b1b1d",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#6a635e",
+                        "on-secondary": "#303032"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "md": "16px",
+                        "base": "4px",
+                        "lg": "24px",
+                        "xs": "8px",
+                        "xl": "32px",
+                        "container-padding": "20px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "display": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "title-md": ["20px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Custom Toggle Switch Styles */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: transparent;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: var(--color-primary, #ffffff);
+        }
+        .toggle-checkbox:checked + .toggle-label:after {
+            transform: translateX(100%);
+            background-color: var(--color-on-primary, #2f3132);
+        }
+        .toggle-label {
+            background-color: var(--color-surface-variant, #353434);
+            transition: all 0.3s ease-in-out;
+        }
+        .toggle-label:after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--color-on-surface-variant, #c5c7c9);
+            border-radius: 50%;
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-lg min-h-screen flex flex-col selection:bg-surface-variant selection:text-primary">
+<!-- TopNavBar Component -->
+<header class="bg-background dark:bg-background w-full sticky top-0 bg-surface-container-low dark:bg-surface-container-low flat no shadows z-50">
+<div class="flex justify-between items-center h-20 px-xl max-w-7xl mx-auto">
+<!-- Brand Logo -->
+<div class="text-title-md font-title-md font-bold tracking-tight text-primary dark:text-primary cursor-pointer active:opacity-80">
+                Shift Carpool
+            </div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex gap-lg items-center">
+<a class="text-on-surface-variant font-medium font-body-lg text-body-lg hover:text-primary transition-colors duration-300 cursor-pointer active:opacity-80" href="#">Explore</a>
+<a class="text-on-surface-variant font-medium font-body-lg text-body-lg hover:text-primary transition-colors duration-300 cursor-pointer active:opacity-80" href="#">My Journeys</a>
+<a aria-current="page" class="text-primary font-bold border-b-2 border-primary pb-1 font-body-lg text-body-lg cursor-pointer active:opacity-80" href="#">Profile</a>
+</nav>
+<!-- Trailing Action -->
+<div class="hidden md:block">
+<button class="bg-surface-variant hover:bg-surface-bright text-primary px-lg py-sm rounded-full font-label-caps text-label-caps transition-colors duration-300 cursor-pointer active:opacity-80">
+                    Broadcast Route
+                </button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-container-padding md:px-xl py-xl flex flex-col gap-lg">
+<!-- Profile Header Section -->
+<section class="bg-surface-container-low rounded-xl border border-surface-variant p-lg flex flex-col md:flex-row items-center md:items-start gap-lg relative overflow-hidden">
+<!-- Decorative background glow -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-surface-variant rounded-full mix-blend-screen filter blur-[80px] opacity-30 pointer-events-none"></div>
+<div class="relative w-32 h-32 flex-shrink-0">
+<img class="w-full h-full object-cover rounded-full border-2 border-surface-variant" data-alt="A high-resolution, professional portrait of a person in a modern, subtly lit environment. The lighting is soft and cinematic, emphasizing a quiet luxury aesthetic. The background is a blurred dark charcoal grey, keeping the focus entirely on the individual. The overall mood is calm, confident, and reliable, suitable for a premium service profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQc52jbZGGhuG-cjOKZXN8OHyx-G4ioF4Us5CykYMxK6Zdwn8hnIYuo2XbIl3qn8Gtxf1q66PmNJf_o4UZqKURTOEpXBt0NlfsyJtOtfItj62WXFxC8sxHTM2hTKtkulL7FRfiA1i4QMUH38WdSMcnKptICKWYgaNUMm3hEAlGEKUGF5eixyRDK8FbJWSmbLkP8zPyXJoJ9nYgBss7yRVXycy-9RpAsEIyJZw3gLQdMJTAz5g_HLi8aKfqm5kiYCDXJnxx9D9uTuY"/>
+<button class="absolute bottom-0 right-0 bg-surface-variant text-primary p-sm rounded-full border border-outline-variant hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="edit">edit</span>
+</button>
+</div>
+<div class="flex flex-col items-center md:items-start text-center md:text-left flex-grow z-10">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-base">Alexander Sterling</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-md">Member since 2021 • 142 Journeys</p>
+<div class="flex items-center gap-sm bg-surface rounded-full px-md py-sm border border-surface-variant">
+<span class="material-symbols-outlined text-primary" data-icon="star" data-weight="fill">star</span>
+<span class="font-title-md text-title-md text-primary">4.9</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">(86 Reviews)</span>
+</div>
+</div>
+<div class="z-10 w-full md:w-auto mt-md md:mt-0">
+<button class="w-full md:w-auto px-lg py-md bg-primary text-on-primary font-label-caps text-label-caps rounded-full hover:opacity-90 transition-opacity">
+                    Edit Profile
+                </button>
+</div>
+</section>
+<!-- Bento Grid Layout for Details -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+<!-- Left Column: Personal Details & Security -->
+<div class="md:col-span-7 flex flex-col gap-lg">
+<!-- Personal Details Card -->
+<section class="bg-surface-container-low rounded-xl border border-surface-variant p-container-padding flex flex-col gap-md">
+<div class="flex items-center justify-between mb-sm">
+<h2 class="font-title-md text-title-md text-primary">Personal Details</h2>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="person">person</span>
+</div>
+<div class="space-y-md">
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-base">Email Address</label>
+<div class="font-body-lg text-body-lg text-on-surface bg-surface rounded-lg p-sm border border-surface-variant flex justify-between items-center">
+<span>a.sterling@example.com</span>
+<span class="text-surface-tint text-body-sm cursor-pointer hover:text-primary">Verify</span>
+</div>
+</div>
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-base">Phone Number</label>
+<div class="font-body-lg text-body-lg text-on-surface bg-surface rounded-lg p-sm border border-surface-variant">
+                                +1 (555) 019-2834
+                            </div>
+</div>
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-base">Home Location</label>
+<div class="font-body-lg text-body-lg text-on-surface bg-surface rounded-lg p-sm border border-surface-variant flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="location_on">location_on</span>
+<span>Tribeca, New York</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Account Settings Card -->
+<section class="bg-surface-container-low rounded-xl border border-surface-variant p-container-padding flex flex-col gap-md">
+<div class="flex items-center justify-between mb-sm">
+<h2 class="font-title-md text-title-md text-primary">Account Settings</h2>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="settings">settings</span>
+</div>
+<div class="space-y-sm">
+<a class="flex items-center justify-between p-sm hover:bg-surface rounded-lg transition-colors group" href="#">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="payments">payments</span>
+<span class="font-body-lg text-body-lg text-on-surface">Payment Methods</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</a>
+<div class="h-[1px] bg-surface-variant w-full"></div>
+<a class="flex items-center justify-between p-sm hover:bg-surface rounded-lg transition-colors group" href="#">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="shield">shield</span>
+<span class="font-body-lg text-body-lg text-on-surface">Privacy &amp; Security</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</a>
+<div class="h-[1px] bg-surface-variant w-full"></div>
+<a class="flex items-center justify-between p-sm hover:bg-surface rounded-lg transition-colors group" href="#">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="notifications">notifications</span>
+<span class="font-body-lg text-body-lg text-on-surface">Notifications</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+</section>
+</div>
+<!-- Right Column: Ride Preferences & Stats -->
+<div class="md:col-span-5 flex flex-col gap-lg">
+<!-- Ride Preferences Card -->
+<section class="bg-surface-container-low rounded-xl border border-surface-variant p-container-padding flex flex-col gap-md h-full">
+<div class="flex items-center justify-between mb-sm">
+<h2 class="font-title-md text-title-md text-primary">Ride Preferences</h2>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="tune">tune</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">These preferences are shared with your co-travelers to ensure a harmonious journey.</p>
+<div class="space-y-lg">
+<!-- Toggle: Quiet Mode -->
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-body-lg text-body-lg text-on-surface mb-base">Quiet Mode</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Prefer limited conversation during rides.</p>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 opacity-0" id="toggle_quiet" name="toggle_quiet" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-variant cursor-pointer relative" for="toggle_quiet"></label>
+</div>
+</div>
+<div class="h-[1px] bg-surface-variant w-full"></div>
+<!-- Toggle: Music -->
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-body-lg text-body-lg text-on-surface mb-base">Background Music</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Low-volume ambient or classical.</p>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 opacity-0" id="toggle_music" name="toggle_music" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-variant cursor-pointer relative" for="toggle_music"></label>
+</div>
+</div>
+<div class="h-[1px] bg-surface-variant w-full"></div>
+<!-- Climate Preference -->
+<div>
+<h3 class="font-body-lg text-body-lg text-on-surface mb-sm">Climate Preference</h3>
+<div class="flex gap-sm">
+<button class="flex-1 py-sm border border-surface-variant rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:border-outline transition-colors">Cool</button>
+<button class="flex-1 py-sm border-2 border-primary bg-surface rounded-lg font-body-sm text-body-sm text-primary">Neutral</button>
+<button class="flex-1 py-sm border border-surface-variant rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:border-outline transition-colors">Warm</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer Component -->
+<footer class="bg-background dark:bg-background w-full mt-auto bg-surface-container-lowest dark:bg-surface-container-lowest flat no shadows">
+<div class="flex flex-col md:flex-row justify-between items-center py-xl px-xl border-t border-outline-variant max-w-7xl mx-auto w-full gap-lg md:gap-0">
+<!-- Copyright -->
+<div class="text-on-surface-variant dark:text-on-surface-variant font-body-sm text-body-sm text-center md:text-left">
+                © 2024 Shift Carpool. The Art of the Shared Journey.
+            </div>
+<!-- Links -->
+<nav class="flex flex-wrap justify-center gap-lg">
+<a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-colors duration-200" href="#">Terms of Service</a>
+<a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-colors duration-200" href="#">Help Center</a>
+<a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-colors duration-200" href="#">Contact</a>
+</nav>
+<!-- Hidden Brand Logo (from JSON structure, usually hidden in footer unless specified in design, keeping for structure match if needed, but JSON says text-label-caps) -->
+<div class="hidden">
+<span class="text-label-caps font-label-caps text-primary">Shift Carpool</span>
+</div>
+</div>
+</footer>
+</body></html>

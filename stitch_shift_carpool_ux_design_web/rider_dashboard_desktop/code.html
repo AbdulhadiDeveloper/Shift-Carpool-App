@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Shift Carpool - Explore</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary-fixed-variant": "#474649",
+                        "tertiary-fixed-dim": "#cec5bf",
+                        "surface-container": "#201f1f",
+                        "surface-bright": "#3a3939",
+                        "tertiary-fixed": "#ebe0db",
+                        "surface-tint": "#c6c6c8",
+                        "inverse-on-surface": "#313030",
+                        "secondary-container": "#474649",
+                        "secondary-fixed-dim": "#c8c6c8",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#4c4641",
+                        "error": "#ffb4ab",
+                        "on-background": "#e5e2e1",
+                        "on-surface-variant": "#c5c7c9",
+                        "background": "#141313",
+                        "surface-variant": "#353434",
+                        "inverse-primary": "#5d5e60",
+                        "surface-container-low": "#1c1b1b",
+                        "primary-container": "#e2e2e4",
+                        "outline": "#8f9194",
+                        "primary-fixed": "#e2e2e4",
+                        "on-primary-fixed-variant": "#454749",
+                        "surface": "#141313",
+                        "on-tertiary-fixed": "#1f1b17",
+                        "on-surface": "#e5e2e1",
+                        "surface-container-lowest": "#0e0e0e",
+                        "inverse-surface": "#e5e2e1",
+                        "error-container": "#93000a",
+                        "surface-container-highest": "#353434",
+                        "on-tertiary": "#352f2c",
+                        "surface-container-high": "#2a2a2a",
+                        "outline-variant": "#44474a",
+                        "on-primary": "#2f3132",
+                        "primary-fixed-dim": "#c6c6c8",
+                        "on-primary-fixed": "#1a1c1d",
+                        "primary": "#ffffff",
+                        "secondary-fixed": "#e4e2e4",
+                        "secondary": "#c8c6c8",
+                        "tertiary-container": "#ebe0db",
+                        "tertiary": "#ffffff",
+                        "on-primary-container": "#636466",
+                        "on-secondary-container": "#b6b4b7",
+                        "surface-dim": "#141313",
+                        "on-secondary-fixed": "#1b1b1d",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#6a635e",
+                        "on-secondary": "#303032"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "sm": "12px",
+                        "md": "16px",
+                        "base": "4px",
+                        "lg": "24px",
+                        "xs": "8px",
+                        "xl": "32px",
+                        "container-padding": "20px",
+                        "gutter": "16px"
+                    },
+                    fontFamily: {
+                        "label-caps": ["Inter", "sans-serif"],
+                        "display": ["Inter", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "headline-lg-mobile": ["Inter", "sans-serif"],
+                        "body-sm": ["Inter", "sans-serif"],
+                        "title-md": ["Inter", "sans-serif"],
+                        "headline-lg": ["Inter", "sans-serif"]
+                    },
+                    fontSize: {
+                        "label-caps": ["12px", { lineHeight: "1", letterSpacing: "0.05em", fontWeight: "600" }],
+                        "display": ["40px", { lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "600" }],
+                        "body-lg": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+                        "body-sm": ["14px", { lineHeight: "1.5", fontWeight: "400" }],
+                        "title-md": ["20px", { lineHeight: "1.4", fontWeight: "500" }],
+                        "headline-lg": ["32px", { lineHeight: "1.25", letterSpacing: "-0.01em", fontWeight: "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #141313;
+            color: #e5e2e1;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .bento-card {
+            background-color: #1C1C1E;
+            border: 1px solid #2C2C2E;
+            border-radius: 0.75rem;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        .bento-card:hover {
+            border-color: #ffffff;
+        }
+        .glass-panel {
+            background: rgba(28, 28, 30, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid #2C2C2E;
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #141313; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #353434; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #474649; 
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-background text-on-surface">
+<!-- TopNavBar -->
+<nav class="bg-background dark:bg-background w-full sticky top-0 bg-surface-container-low dark:bg-surface-container-low flat no shadows z-50">
+<div class="flex justify-between items-center h-20 px-xl max-w-7xl mx-auto">
+<div class="text-title-md font-title-md font-bold tracking-tight text-primary dark:text-primary">
+                Shift Carpool
+            </div>
+<div class="hidden md:flex gap-lg items-center">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-lg text-body-lg cursor-pointer active:opacity-80" href="#">Explore</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-body-lg text-body-lg cursor-pointer active:opacity-80" href="#">My Journeys</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-body-lg text-body-lg cursor-pointer active:opacity-80" href="#">Profile</a>
+</div>
+<button class="hidden md:flex items-center gap-2 bg-primary text-on-primary px-lg py-sm rounded-full font-label-caps text-label-caps hover:bg-primary-fixed-dim transition-colors cursor-pointer active:opacity-80">
+                Broadcast Route
+            </button>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu</span>
+</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col max-w-7xl mx-auto w-full px-container-padding md:px-xl py-lg gap-xl">
+<!-- Hero / Search Section -->
+<section class="w-full flex flex-col gap-lg">
+<div class="flex flex-col gap-sm">
+<h1 class="font-headline-lg text-headline-lg text-primary">Curated Journeys</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Discover available seats on verified routes. Travel with intention.</p>
+</div>
+<div class="glass-panel rounded-xl p-md flex flex-col md:flex-row gap-md items-center w-full">
+<div class="flex-1 flex items-center bg-background rounded-lg border border-outline-variant px-md py-sm w-full">
+<span class="material-symbols-outlined text-on-surface-variant mr-sm">location_on</span>
+<input class="bg-transparent border-none outline-none w-full text-primary font-body-lg text-body-lg placeholder:text-on-surface-variant focus:ring-0 p-0" placeholder="Origin" type="text"/>
+</div>
+<div class="hidden md:block">
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+</div>
+<div class="flex-1 flex items-center bg-background rounded-lg border border-outline-variant px-md py-sm w-full">
+<span class="material-symbols-outlined text-on-surface-variant mr-sm">flag</span>
+<input class="bg-transparent border-none outline-none w-full text-primary font-body-lg text-body-lg placeholder:text-on-surface-variant focus:ring-0 p-0" placeholder="Destination" type="text"/>
+</div>
+<div class="flex-1 flex items-center bg-background rounded-lg border border-outline-variant px-md py-sm w-full">
+<span class="material-symbols-outlined text-on-surface-variant mr-sm">calendar_today</span>
+<input class="bg-transparent border-none outline-none w-full text-primary font-body-lg text-body-lg placeholder:text-on-surface-variant focus:ring-0 p-0" placeholder="Today" type="text"/>
+</div>
+<button class="w-full md:w-auto bg-primary text-on-primary px-lg py-sm rounded-lg font-label-caps text-label-caps hover:bg-primary-fixed-dim transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">search</span>
+                    Find Route
+                </button>
+</div>
+<div class="flex gap-sm overflow-x-auto pb-2 -mx-container-padding px-container-padding md:mx-0 md:px-0 scrollbar-hide">
+<button class="bg-surface-variant text-primary px-md py-xs rounded-full font-label-caps text-label-caps whitespace-nowrap border border-outline-variant hover:border-primary transition-colors">Morning Departures</button>
+<button class="bg-surface-variant text-primary px-md py-xs rounded-full font-label-caps text-label-caps whitespace-nowrap border border-outline-variant hover:border-primary transition-colors">Electric Vehicles Only</button>
+<button class="bg-surface-variant text-primary px-md py-xs rounded-full font-label-caps text-label-caps whitespace-nowrap border border-outline-variant hover:border-primary transition-colors">Quiet Ride</button>
+<button class="bg-background text-on-surface-variant px-md py-xs rounded-full font-label-caps text-label-caps whitespace-nowrap border border-outline-variant hover:text-primary hover:border-primary transition-colors">Filters <span class="material-symbols-outlined text-sm align-middle ml-1">tune</span></button>
+</div>
+</section>
+<!-- Layout Wrapper -->
+<div class="flex flex-col lg:flex-row gap-xl">
+<!-- Map/Visual Anchor (Left Side on Desktop) -->
+<aside class="hidden lg:block w-1/3 min-w-[300px] h-[600px] sticky top-28 rounded-xl overflow-hidden border border-outline-variant">
+<div class="bg-cover bg-center w-full h-full relative" data-alt="A highly detailed, minimalist dark-mode map interface showing a sleek route vector between two major metropolitan areas. The map relies on deep charcoal and slate tones, with a glowing pristine white line indicating the route. The UI feels premium, quiet luxury, and reminiscent of a high-end private aviation tracker. Soft, ambient lighting defines the geographic shapes." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBUIYjqvASP4JPHTenZEkZ1IpS8S_e_YKxyaBRKHX9b55uUTXW1kEL7XeRUu0akaMZAjnhVbsVFAuSZDDLFHoEq7cF7bXE7INhtO3KlePBwIq-lHcKKXmn53eQXsWxofvOl6hqGpl-ADWgYLl7P60juskEMCWKXMJalA8ZkEgNT8FWuKm8bf3E-AaG9rOlAu8sEglguKTsvElfvWR8oKRKpvlNwZd8X1wnDegprDurjTVDs48lHIEKo4u-2o2fPaof0NFsbkYj4oMk')">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-lg left-lg right-lg">
+<div class="glass-panel p-md rounded-lg">
+<h3 class="font-title-md text-title-md text-primary mb-xs">Active Region</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">San Francisco Bay Area</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Grid Feed (Right Side on Desktop) -->
+<section class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-md auto-rows-max">
+<!-- Card 1 -->
+<article class="bento-card flex flex-col gap-md">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-sm">
+<img class="w-12 h-12 rounded-full object-cover border border-outline-variant" data-alt="A professional, high-fidelity black and white portrait of a confident driver in their 30s. The portrait is shot against a dark, minimalist studio background with subtle side lighting that emphasizes texture and calm professionalism. The aesthetic aligns with quiet luxury and high-end editorial photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqSUhDnjEVi-SJDoAqw6ArBt99UZw_8xU8G6iL0QGn4T4TlO7vOtykhtKOXGMLndxJU5IsVNl3QoDkeV8HLSPolEDZr8RCjv-hVYEihZwERFnqDLyc9TeZiXJMNGzY_ROLEEylBSgb4mU2hl8d2IDgoMUjbokVdcCvl8XrX60hAyxxlokAsC5YT1qiAVDJGJL_67dLtLO1MDa54Lkz_Ss2cyJik3sXNL2W9KY5ijlIxm3cOG4jo2hdc4pynbl6lbaQNLeeIWXUKzs"/>
+<div>
+<h3 class="font-title-md text-title-md text-primary leading-tight">Elena M.</h3>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-caps text-label-caps">4.9</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-variant px-sm py-xs rounded font-label-caps text-label-caps text-primary border border-outline-variant">
+                            $45
+                        </div>
+</div>
+<div class="flex flex-col gap-sm py-sm border-y border-outline-variant">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant">08:00 AM</span>
+<div class="flex-1 mx-sm relative flex items-center">
+<div class="w-2 h-2 rounded-full bg-primary z-10"></div>
+<div class="h-[1px] bg-outline-variant flex-1"></div>
+<span class="material-symbols-outlined absolute left-1/2 -translate-x-1/2 text-outline-variant bg-[#1C1C1E] px-1 text-sm">directions_car</span>
+<div class="w-2 h-2 rounded-full border border-primary bg-transparent z-10"></div>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">10:30 AM</span>
+</div>
+<div class="flex justify-between items-center font-body-sm text-body-sm text-primary">
+<span>SF (SOMA)</span>
+<span>San Jose (Downtown)</span>
+</div>
+</div>
+<div class="flex justify-between items-end mt-auto">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Vehicle</span>
+<span class="font-body-sm text-body-sm text-primary">Tesla Model 3 • Quiet Ride</span>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">1 Seat Left</span>
+<button class="bg-primary text-on-primary px-md py-sm rounded-lg font-label-caps text-label-caps hover:bg-primary-fixed-dim transition-colors">Secure Seat</button>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bento-card flex flex-col gap-md">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 rounded-full bg-surface-variant border border-outline-variant flex items-center justify-center">
+<span class="font-title-md text-title-md text-primary">DJ</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-primary leading-tight">David J.</h3>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-caps text-label-caps">5.0</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-variant px-sm py-xs rounded font-label-caps text-label-caps text-primary border border-outline-variant">
+                            $35
+                        </div>
+</div>
+<div class="flex flex-col gap-sm py-sm border-y border-outline-variant">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant">09:15 AM</span>
+<div class="flex-1 mx-sm relative flex items-center">
+<div class="w-2 h-2 rounded-full bg-primary z-10"></div>
+<div class="h-[1px] bg-outline-variant flex-1"></div>
+<span class="material-symbols-outlined absolute left-1/2 -translate-x-1/2 text-outline-variant bg-[#1C1C1E] px-1 text-sm">directions_car</span>
+<div class="w-2 h-2 rounded-full border border-primary bg-transparent z-10"></div>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">11:00 AM</span>
+</div>
+<div class="flex justify-between items-center font-body-sm text-body-sm text-primary">
+<span>Oakland (BART)</span>
+<span>Palo Alto (Cal Ave)</span>
+</div>
+</div>
+<div class="flex justify-between items-end mt-auto">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Vehicle</span>
+<span class="font-body-sm text-body-sm text-primary">Lucid Air • Pets Allowed</span>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">2 Seats Left</span>
+<button class="bg-primary text-on-primary px-md py-sm rounded-lg font-label-caps text-label-caps hover:bg-primary-fixed-dim transition-colors">Secure Seat</button>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bento-card flex flex-col gap-md opacity-80 cursor-not-allowed grayscale">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-sm">
+<img class="w-12 h-12 rounded-full object-cover border border-outline-variant" data-alt="A moody, low-key lighting portrait of a driver in profile. The subject is well-dressed in subtle textures, photographed against a seamless dark background. The image evokes a sense of calm reliability and understated luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAInoB1-k46Qb8dTJQUdIFKp1RTNty5bZy0kHf3v2ObpSDJJBVMQnWsZE0IyLyx6yMogyd6iDQZvGbGsaijkY1t8CXmeJQnFYg_khVMlTLkY31GH6Hn7XC96pbbEc3VsekUlsFb_kNupdfEKCrH7f90PZtVsdDuC4YkzLJpXm7nXdF8ZqIyCNvDGnpOfakg60BqllyBlS3vv-G2dMyz0rlg3kKBbrxpoGJLS-63fBFkrQCsqE_yAnPGTEK8PEePecHzCpdmYXZMWzY"/>
+<div>
+<h3 class="font-title-md text-title-md text-primary leading-tight">Sarah K.</h3>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-caps text-label-caps">4.8</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-variant px-sm py-xs rounded font-label-caps text-label-caps text-on-surface-variant border border-outline-variant line-through">
+                            $50
+                        </div>
+</div>
+<div class="flex flex-col gap-sm py-sm border-y border-outline-variant">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant">07:30 AM</span>
+<div class="flex-1 mx-sm relative flex items-center">
+<div class="w-2 h-2 rounded-full bg-on-surface-variant z-10"></div>
+<div class="h-[1px] bg-outline-variant flex-1"></div>
+<span class="material-symbols-outlined absolute left-1/2 -translate-x-1/2 text-outline-variant bg-[#1C1C1E] px-1 text-sm">directions_car</span>
+<div class="w-2 h-2 rounded-full border border-on-surface-variant bg-transparent z-10"></div>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">09:45 AM</span>
+</div>
+<div class="flex justify-between items-center font-body-sm text-body-sm text-on-surface-variant">
+<span>Marin (Hub)</span>
+<span>SF (Financial Dist)</span>
+</div>
+</div>
+<div class="flex justify-between items-end mt-auto">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Vehicle</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Rivian R1S</span>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="font-label-caps text-label-caps text-error">Fully Booked</span>
+<button class="bg-surface-variant text-on-surface-variant px-md py-sm rounded-lg font-label-caps text-label-caps border border-outline-variant" disabled="">Waitlist</button>
+</div>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="bento-card flex flex-col gap-md">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 rounded-full bg-surface-variant border border-outline-variant flex items-center justify-center">
+<span class="font-title-md text-title-md text-primary">MR</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-primary leading-tight">Marcus R.</h3>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-caps text-label-caps">New</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-variant px-sm py-xs rounded font-label-caps text-label-caps text-primary border border-outline-variant">
+                            $25
+                        </div>
+</div>
+<div class="flex flex-col gap-sm py-sm border-y border-outline-variant">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant">10:00 AM</span>
+<div class="flex-1 mx-sm relative flex items-center">
+<div class="w-2 h-2 rounded-full bg-primary z-10"></div>
+<div class="h-[1px] bg-outline-variant flex-1"></div>
+<span class="material-symbols-outlined absolute left-1/2 -translate-x-1/2 text-outline-variant bg-[#1C1C1E] px-1 text-sm">directions_car</span>
+<div class="w-2 h-2 rounded-full border border-primary bg-transparent z-10"></div>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">10:45 AM</span>
+</div>
+<div class="flex justify-between items-center font-body-sm text-body-sm text-primary">
+<span>Berkeley (Campus)</span>
+<span>SF (Embarcadero)</span>
+</div>
+</div>
+<div class="flex justify-between items-end mt-auto">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Vehicle</span>
+<span class="font-body-sm text-body-sm text-primary">Polestar 2 • Music Allowed</span>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">3 Seats Left</span>
+<button class="bg-primary text-on-primary px-md py-sm rounded-lg font-label-caps text-label-caps hover:bg-primary-fixed-dim transition-colors">Secure Seat</button>
+</div>
+</div>
+</article>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-background dark:bg-background w-full mt-auto bg-surface-container-lowest dark:bg-surface-container-lowest flat no shadows flex flex-col md:flex-row justify-between items-center py-xl px-xl border-t border-outline-variant">
+<div class="text-label-caps font-label-caps text-primary mb-md md:mb-0">
+            Shift Carpool
+        </div>
+<div class="font-body-sm text-body-sm text-on-surface-variant dark:text-on-surface-variant text-center md:text-left mb-md md:mb-0">
+            © 2024 Shift Carpool. The Art of the Shared Journey.
+        </div>
+<div class="flex flex-wrap justify-center md:justify-end gap-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-sm text-body-sm" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-sm text-body-sm" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-sm text-body-sm" href="#">Help Center</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-sm text-body-sm" href="#">Contact</a>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Journey History - Shift Carpool</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#474649",
+                        "tertiary-fixed-dim": "#cec5bf",
+                        "surface-container": "#201f1f",
+                        "surface-bright": "#3a3939",
+                        "tertiary-fixed": "#ebe0db",
+                        "surface-tint": "#c6c6c8",
+                        "inverse-on-surface": "#313030",
+                        "secondary-container": "#474649",
+                        "secondary-fixed-dim": "#c8c6c8",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#4c4641",
+                        "error": "#ffb4ab",
+                        "on-background": "#e5e2e1",
+                        "on-surface-variant": "#c5c7c9",
+                        "background": "#141313",
+                        "surface-variant": "#353434",
+                        "inverse-primary": "#5d5e60",
+                        "surface-container-low": "#1c1b1b",
+                        "primary-container": "#e2e2e4",
+                        "outline": "#8f9194",
+                        "primary-fixed": "#e2e2e4",
+                        "on-primary-fixed-variant": "#454749",
+                        "surface": "#141313",
+                        "on-tertiary-fixed": "#1f1b17",
+                        "on-surface": "#e5e2e1",
+                        "surface-container-lowest": "#0e0e0e",
+                        "inverse-surface": "#e5e2e1",
+                        "error-container": "#93000a",
+                        "surface-container-highest": "#353434",
+                        "on-tertiary": "#352f2c",
+                        "surface-container-high": "#2a2a2a",
+                        "outline-variant": "#44474a",
+                        "on-primary": "#2f3132",
+                        "primary-fixed-dim": "#c6c6c8",
+                        "on-primary-fixed": "#1a1c1d",
+                        "primary": "#ffffff",
+                        "secondary-fixed": "#e4e2e4",
+                        "secondary": "#c8c6c8",
+                        "tertiary-container": "#ebe0db",
+                        "tertiary": "#ffffff",
+                        "on-primary-container": "#636466",
+                        "on-secondary-container": "#b6b4b7",
+                        "surface-dim": "#141313",
+                        "on-secondary-fixed": "#1b1b1d",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#6a635e",
+                        "on-secondary": "#303032"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "md": "16px",
+                        "base": "4px",
+                        "lg": "24px",
+                        "xs": "8px",
+                        "xl": "32px",
+                        "container-padding": "20px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "display": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "title-md": ["20px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-lg min-h-screen flex flex-col antialiased selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="bg-background dark:bg-background w-full sticky top-0 z-50 bg-surface-container-low dark:bg-surface-container-low flat no shadows">
+<div class="flex justify-between items-center h-20 px-xl max-w-7xl mx-auto">
+<div class="text-title-md font-title-md font-bold tracking-tight text-primary dark:text-primary">
+                Shift Carpool
+            </div>
+<div class="hidden md:flex items-center space-x-lg">
+<a class="text-on-surface-variant font-medium font-body-lg text-body-lg hover:text-primary transition-colors duration-300 cursor-pointer active:opacity-80" href="#">Explore</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-lg text-body-lg hover:text-primary transition-colors duration-300 cursor-pointer active:opacity-80" href="#">My Journeys</a>
+<a class="text-on-surface-variant font-medium font-body-lg text-body-lg hover:text-primary transition-colors duration-300 cursor-pointer active:opacity-80" href="#">Profile</a>
+</div>
+<button class="hidden md:flex items-center justify-center bg-primary text-on-primary font-label-caps text-label-caps px-lg py-sm rounded-full hover:bg-primary-fixed-dim transition-colors duration-300 cursor-pointer active:opacity-80">
+                Broadcast Route
+            </button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-container-padding md:px-xl py-xl flex flex-col space-y-xl">
+<!-- Header & Toggles -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-md md:space-y-0">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">My Journeys</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-base">Review your past and upcoming shared routes.</p>
+</div>
+<div class="flex bg-surface-container-low p-base rounded-full border border-outline-variant/30">
+<button class="px-lg py-xs rounded-full font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors">UPCOMING</button>
+<button class="px-lg py-xs rounded-full font-label-caps text-label-caps bg-surface-variant text-primary shadow-sm transition-colors">HISTORY</button>
+</div>
+</div>
+<!-- History Content - Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Summary Stats Card (Side Span) -->
+<div class="md:col-span-4 flex flex-col space-y-gutter">
+<div class="bg-surface-container-low rounded-xl p-container-padding border border-outline-variant/30 flex flex-col justify-between min-h-[200px]">
+<div class="flex items-center space-x-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="route">route</span>
+<span class="font-label-caps text-label-caps">TOTAL JOURNEYS</span>
+</div>
+<div class="mt-md">
+<span class="font-display text-display text-primary">42</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-base">Shared miles saved: 1,240</p>
+</div>
+<div class="mt-auto pt-lg">
+<div class="h-2 w-full bg-surface-variant rounded-full overflow-hidden flex">
+<div class="bg-primary h-full w-[65%]"></div>
+<div class="bg-tertiary h-full w-[35%] opacity-50"></div>
+</div>
+<div class="flex justify-between mt-sm font-label-caps text-label-caps text-on-surface-variant">
+<span>Driving 65%</span>
+<span>Riding 35%</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-container-padding border border-outline-variant/30 relative overflow-hidden group">
+<div class="absolute inset-0 bg-cover bg-center w-full h-full opacity-30 group-hover:opacity-40 transition-opacity duration-500" data-alt="A moody, high-contrast photograph taken from inside a luxury vehicle at night, looking out through rain-streaked windows at blurred city lights in deep charcoal, slate, and bright white tones. The aesthetic is minimal, cinematic, and premium." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCzT731PDRh51tBo0dvhQtaFE-Qva7MyGnA1Ix8on-aFZiqrGhKwJ4gGc16zSpyf1OmY4hZVnfB_n3AmVpkEjW9J60W8Q-gLw1qu6H_NiHq5a6DzNQ2b6Dh_iMNpArgF_yum7IxHd-coowbFkCIYkkhsXGCFl7RjengDfwTFirAwtNtY3tKK_pmS1K94BC0Jsf1tILniHy_AHQfZnSyq_BbPoyH88yG4Hwyzd3jUGeb2999veuuqokTGyHZL-ztLljh55l1UeqDAdQ')"></div>
+<div class="relative z-10 flex flex-col h-full justify-end min-h-[160px]">
+<h3 class="font-title-md text-title-md text-primary">Carbon Offset</h3>
+<p class="font-body-sm text-body-sm text-on-surface mt-xs">You've contributed to a cleaner city.</p>
+</div>
+</div>
+</div>
+<!-- List/Grid of Past Journeys -->
+<div class="md:col-span-8 flex flex-col space-y-gutter">
+<!-- Journey Item 1 (Driver) -->
+<div class="bg-surface-container-low rounded-xl p-container-padding border border-outline-variant/30 hover:bg-surface-container transition-colors duration-300 cursor-pointer group">
+<div class="flex flex-col sm:flex-row justify-between sm:items-center space-y-md sm:space-y-0">
+<div class="flex items-start space-x-md">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center shrink-0 border border-outline-variant/50">
+<span class="material-symbols-outlined text-primary" data-icon="directions_car" data-weight="fill">directions_car</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center space-x-sm">
+<span class="font-title-md text-title-md text-primary">Downtown Commute</span>
+<span class="px-sm py-px rounded-sm bg-surface-variant text-on-surface-variant font-label-caps text-label-caps tracking-wider border border-outline-variant/30">DRIVING</span>
+</div>
+<div class="flex items-center space-x-xs text-on-surface-variant mt-xs font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="calendar_month">calendar_month</span>
+<span>Oct 24, 2023 • 8:30 AM</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:items-end text-left sm:text-right border-t sm:border-t-0 border-outline-variant/30 pt-md sm:pt-0">
+<span class="font-label-caps text-label-caps text-tertiary-fixed-dim">COMPLETED</span>
+<div class="flex items-center space-x-xs mt-xs text-on-surface">
+<div class="flex -space-x-sm">
+<img class="w-6 h-6 rounded-full border border-surface-container-low object-cover" data-alt="A professional headshot of a young professional in a minimalist setting, high contrast, dark mode aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2BTtf_VfaQFXUQ_3LfBAU6CdmioCFLRwDheOOA5it2CFKk0l2A__6i7-qgdxVEkG_NUqGkg6lOZLE7Vo9UyrmzEAMU0HY4hhO-WMUNrBqBl5QVVpsAs1qQHqeG6PZyuwKhk5ev4z61gm2klITSYCMbiDVjyc9bzy9Y1jfyASUWDWivvd2WIb4oAJUsJcFrPhuSVJpTgqxpQLfoYiXggKypCpcjsAw9GzpSaDW2ZmGJZd155hNZkCIUNBwnxfzuhXMua_XWlkg4Qo"/>
+<img class="w-6 h-6 rounded-full border border-surface-container-low object-cover" data-alt="A moody, high-end portrait of a person wearing minimalist clothing against a charcoal background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjd1teLQZgOeqf5dYFmH_n-zg4dS6J-duWJ_y08a0s1sCAiZxLVEfmP1wg_-sqQs8wcQnGWXjgYKzi6Ao9vOHPu6Q9jI5m4Kl-MD-5zy10gOH_9KPdDnjwSTZMkvHZ4hiRc9_WpDkA6oXQVzDbpHBLX1t-NzcZK5YXk73AlyoPnJ1LNqx1IrTh_uiP9okEb6J8ff4pt4zIEa3MBqSGFMpw_k-AdqJMC7pugjYUnimpSGaRUNlAWiSzvRGvJ8f0oYOOvL2doNk443M"/>
+</div>
+<span class="font-body-sm text-body-sm ml-sm">2 Passengers</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Journey Item 2 (Rider) -->
+<div class="bg-surface-container-low rounded-xl p-container-padding border border-outline-variant/30 hover:bg-surface-container transition-colors duration-300 cursor-pointer group">
+<div class="flex flex-col sm:flex-row justify-between sm:items-center space-y-md sm:space-y-0">
+<div class="flex items-start space-x-md">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center shrink-0 border border-outline-variant/50">
+<span class="material-symbols-outlined text-tertiary-fixed-dim" data-icon="airline_seat_recline_normal">airline_seat_recline_normal</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center space-x-sm">
+<span class="font-title-md text-title-md text-primary">Tech Park Return</span>
+<span class="px-sm py-px rounded-sm bg-surface-variant text-on-surface-variant font-label-caps text-label-caps tracking-wider border border-outline-variant/30">RIDING</span>
+</div>
+<div class="flex items-center space-x-xs text-on-surface-variant mt-xs font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="calendar_month">calendar_month</span>
+<span>Oct 22, 2023 • 6:00 PM</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:items-end text-left sm:text-right border-t sm:border-t-0 border-outline-variant/30 pt-md sm:pt-0">
+<span class="font-label-caps text-label-caps text-tertiary-fixed-dim">COMPLETED</span>
+<div class="flex items-center space-x-sm mt-xs text-on-surface">
+<img class="w-6 h-6 rounded-full border border-surface-container-low object-cover" data-alt="A clean, modern headshot of a driver with neutral expression, lit with soft white light against a deep dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpYdsUas9eogokZFg-S_BBILEmLsAzZSnHx3moNVmZPdx7VU4Ku_mo65ggGqlVatNV7UKlb0fTZXmjW_mDqfn9QoTymO3CG9mSZQ_pEMkjJkTXzxfkOhQ7Z6Bp1vIu_etmwVSixDO-X96Fnu9bLuIYoZ6jC-RVxwNdb8meEmci9nMWpATlWdXDA1r2vT8ydDguiJOcFUTBxk-plnIUvfxbDYtA2jmn6OxCyt098h0z5JtCfqjfWXro2XXAj4UKGmtJzO4pHPh24fI"/>
+<span class="font-body-sm text-body-sm">Driven by Sarah</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Journey Item 3 (Cancelled) -->
+<div class="bg-surface-container-low rounded-xl p-container-padding border border-outline-variant/30 opacity-75 hover:opacity-100 hover:bg-surface-container transition-all duration-300 cursor-pointer group">
+<div class="flex flex-col sm:flex-row justify-between sm:items-center space-y-md sm:space-y-0">
+<div class="flex items-start space-x-md">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center shrink-0 border border-outline-variant/50">
+<span class="material-symbols-outlined text-outline" data-icon="block">block</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center space-x-sm">
+<span class="font-title-md text-title-md text-on-surface-variant strike-through">Airport Transfer</span>
+<span class="px-sm py-px rounded-sm bg-surface-variant text-on-surface-variant font-label-caps text-label-caps tracking-wider border border-outline-variant/30">DRIVING</span>
+</div>
+<div class="flex items-center space-x-xs text-outline mt-xs font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="calendar_month">calendar_month</span>
+<span>Oct 15, 2023 • 4:00 AM</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:items-end text-left sm:text-right border-t sm:border-t-0 border-outline-variant/30 pt-md sm:pt-0">
+<span class="font-label-caps text-label-caps text-outline">CANCELLED</span>
+<span class="font-body-sm text-body-sm text-outline mt-xs">-</span>
+</div>
+</div>
+</div>
+<!-- View More Action -->
+<div class="pt-sm flex justify-center">
+<button class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors flex items-center space-x-xs py-sm px-md border border-outline-variant/50 rounded-full hover:bg-surface-variant">
+<span>LOAD MORE</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-background dark:bg-background w-full mt-auto bg-surface-container-lowest dark:bg-surface-container-lowest flat no shadows border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center py-xl px-xl max-w-7xl mx-auto w-full">
+<div class="text-label-caps font-label-caps text-primary mb-md md:mb-0">
+                © 2024 Shift Carpool. The Art of the Shared Journey.
+            </div>
+<div class="flex flex-wrap justify-center md:justify-end gap-md md:space-x-lg">
+<a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-colors duration-200" href="#">Terms of Service</a>
+<a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-colors duration-200" href="#">Help Center</a>
+<a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-colors duration-200" href="#">Contact</a>
+</div>
+</div>
+</footer>
+</body></html>

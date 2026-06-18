@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Match Confirmation - Shift Carpool</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#474649",
+                        "tertiary-fixed-dim": "#cec5bf",
+                        "surface-container": "#201f1f",
+                        "surface-bright": "#3a3939",
+                        "tertiary-fixed": "#ebe0db",
+                        "surface-tint": "#c6c6c8",
+                        "inverse-on-surface": "#313030",
+                        "secondary-container": "#474649",
+                        "secondary-fixed-dim": "#c8c6c8",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#4c4641",
+                        "error": "#ffb4ab",
+                        "on-background": "#e5e2e1",
+                        "on-surface-variant": "#c5c7c9",
+                        "background": "#141313",
+                        "surface-variant": "#353434",
+                        "inverse-primary": "#5d5e60",
+                        "surface-container-low": "#1c1b1b",
+                        "primary-container": "#e2e2e4",
+                        "outline": "#8f9194",
+                        "primary-fixed": "#e2e2e4",
+                        "on-primary-fixed-variant": "#454749",
+                        "surface": "#141313",
+                        "on-tertiary-fixed": "#1f1b17",
+                        "on-surface": "#e5e2e1",
+                        "surface-container-lowest": "#0e0e0e",
+                        "inverse-surface": "#e5e2e1",
+                        "error-container": "#93000a",
+                        "surface-container-highest": "#353434",
+                        "on-tertiary": "#352f2c",
+                        "surface-container-high": "#2a2a2a",
+                        "outline-variant": "#44474a",
+                        "on-primary": "#2f3132",
+                        "primary-fixed-dim": "#c6c6c8",
+                        "on-primary-fixed": "#1a1c1d",
+                        "primary": "#ffffff",
+                        "secondary-fixed": "#e4e2e4",
+                        "secondary": "#c8c6c8",
+                        "tertiary-container": "#ebe0db",
+                        "tertiary": "#ffffff",
+                        "on-primary-container": "#636466",
+                        "on-secondary-container": "#b6b4b7",
+                        "surface-dim": "#141313",
+                        "on-secondary-fixed": "#1b1b1d",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#6a635e",
+                        "on-secondary": "#303032"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "md": "16px",
+                        "base": "4px",
+                        "lg": "24px",
+                        "xs": "8px",
+                        "xl": "32px",
+                        "container-padding": "20px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "display": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "title-md": ["20px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-surface');
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .bento-card {
+            background-color: theme('colors.surface-container-low');
+            border: 1px solid theme('colors.surface-container-high');
+            border-radius: theme('borderRadius.xl');
+            padding: theme('spacing.container-padding');
+        }
+        .glass-panel {
+            background: rgba(28, 27, 27, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid theme('colors.surface-container-high');
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="bg-background dark:bg-background w-full sticky top-0 bg-surface-container-low dark:bg-surface-container-low flat no shadows z-50">
+<div class="flex justify-between items-center h-20 px-xl max-w-7xl mx-auto">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="directions_car">directions_car</span>
+<span class="text-title-md font-title-md font-bold tracking-tight text-primary dark:text-primary">Shift Carpool</span>
+</div>
+<div class="hidden md:flex items-center gap-xl">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 cursor-pointer active:opacity-80" href="#">Explore</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 cursor-pointer active:opacity-80" href="#">My Journeys</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 cursor-pointer active:opacity-80" href="#">Profile</a>
+</div>
+<button class="hidden md:flex items-center justify-center bg-primary text-on-primary px-lg py-sm rounded-full font-label-caps text-label-caps hover:bg-primary-container transition-colors duration-300 cursor-pointer active:opacity-80">
+                Broadcast Route
+            </button>
+<!-- Mobile Menu Trigger -->
+<button class="md:hidden text-on-surface p-sm">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center p-md md:p-xl relative overflow-hidden">
+<!-- Abstract Background Element -->
+<div class="absolute inset-0 z-0 opacity-20 pointer-events-none flex items-center justify-center">
+<div class="w-[800px] h-[800px] rounded-full bg-gradient-to-tr from-surface-variant to-background blur-[120px]"></div>
+</div>
+<!-- Success Modal/Card Container -->
+<div class="bento-card glass-panel w-full max-w-2xl z-10 flex flex-col items-center text-center p-xl md:p-[48px] shadow-2xl relative overflow-hidden">
+<!-- Success Icon -->
+<div class="w-24 h-24 rounded-full bg-surface-container flex items-center justify-center mb-lg border border-surface-container-high relative">
+<!-- Subtle glow behind icon -->
+<div class="absolute inset-0 rounded-full bg-primary opacity-5 blur-md"></div>
+<span class="material-symbols-outlined text-primary text-5xl" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<!-- Header -->
+<h1 class="font-headline-lg text-headline-lg text-primary mb-sm">Seat Reserved Successfully</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-xl max-w-md">
+                Your journey details have been confirmed. The driver has been notified and is expecting you.
+            </p>
+<!-- Trip Summary Box -->
+<div class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg p-lg mb-xl text-left grid grid-cols-1 md:grid-cols-2 gap-lg relative overflow-hidden">
+<!-- Driver Info -->
+<div class="flex items-center gap-md col-span-1 md:col-span-2 pb-md border-b border-surface-container-highest">
+<div class="w-12 h-12 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A close-up portrait of a professional driver, warm and welcoming expression, bathed in soft cinematic lighting against a dark minimalist background. The style is high-end corporate lifestyle photography, emphasizing trust and reliability within a 'Quiet Luxury' aesthetic. Tonal charcoal hues dominate the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuQtQmbbWeC5YjrF3JGJIOAyuaxJD9vFpcQ8GF9pc2yC--v-vQ8vt-uJ06JIPslp2Xr5j1dGKbOUXwVJXgvIAxCuk0aLpF2NNchpbjZ-p4gfJfoMym8dQvyMHZonoSkbvmSGNIZeJTL_T742Ye4KHq-RrvpBZoSOBn1rg11Dq2um095O20Z1VkQssz3ORlMe5wC4yGGyf3XNHFAvlq5Oh3J-e4AWnl0rb43Er-h5_VHUjOi5ZlKmaIkPPYQbyTjiBTJ1BL2DAhPww"/>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-base">YOUR DRIVER</p>
+<p class="font-title-md text-title-md text-primary">Alexander Pierce</p>
+</div>
+<div class="ml-auto flex items-center gap-base text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-body-sm text-body-sm font-medium">4.9</span>
+</div>
+</div>
+<!-- Route Details -->
+<div class="col-span-1 flex flex-col gap-sm">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-base flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="trip_origin">trip_origin</span>
+                            PICKUP
+                        </p>
+<p class="font-body-lg text-body-lg text-on-surface">Financial District, 42nd St.</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">08:15 AM</p>
+</div>
+</div>
+<div class="col-span-1 flex flex-col gap-sm">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-base flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span>
+                            DROPOFF
+                        </p>
+<p class="font-body-lg text-body-lg text-on-surface">Tech Hub, Silicon Ave.</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">09:00 AM (Est)</p>
+</div>
+</div>
+<!-- Vehicle Info -->
+<div class="col-span-1 md:col-span-2 pt-md border-t border-surface-container-highest flex items-center justify-between">
+<div class="flex items-center gap-sm text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="directions_car">directions_car</span>
+<span class="font-body-sm text-body-sm">Tesla Model S • Black</span>
+</div>
+<div class="bg-surface-container px-sm py-base rounded text-on-surface font-body-sm text-body-sm border border-outline-variant font-mono tracking-wider">
+                        NYC-8492
+                    </div>
+</div>
+</div>
+<!-- Primary Action -->
+<button class="w-full flex items-center justify-center gap-sm bg-primary text-on-primary py-md px-xl rounded-full font-title-md text-title-md hover:bg-primary-container transition-all duration-300 group mb-lg relative overflow-hidden">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform duration-300" data-icon="chat">chat</span>
+                Open WhatsApp Coordinator
+                <!-- Subtle hover glow effect -->
+<div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none"></div>
+</button>
+<!-- Secondary Action -->
+<a class="font-body-lg text-body-lg text-on-surface-variant hover:text-primary transition-colors duration-300 border-b border-transparent hover:border-primary pb-base inline-flex items-center gap-xs" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_back">arrow_back</span>
+                Return to Dashboard
+            </a>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-background dark:bg-background w-full mt-auto bg-surface-container-lowest dark:bg-surface-container-lowest flat no shadows">
+<div class="flex flex-col md:flex-row justify-between items-center py-xl px-xl border-t border-outline-variant max-w-7xl mx-auto w-full">
+<div class="text-label-caps font-label-caps text-primary mb-md md:mb-0">
+                Shift Carpool
+            </div>
+<div class="flex flex-wrap justify-center gap-md md:gap-xl mb-md md:mb-0">
+<a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-colors duration-200" href="#">Terms of Service</a>
+<a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-colors duration-200" href="#">Help Center</a>
+<a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-colors duration-200" href="#">Contact</a>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant dark:text-on-surface-variant text-center md:text-right">
+                © 2024 Shift Carpool. The Art of the Shared Journey.
+            </div>
+</div>
+</footer>
+</body></html>

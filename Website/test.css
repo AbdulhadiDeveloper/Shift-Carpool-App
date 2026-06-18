@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@theme {
+  --spacing-md: 16px;
+  --size-md: 28rem;
+  --container-md: 28rem;
+}
+.test-md { @apply max-w-md; }
