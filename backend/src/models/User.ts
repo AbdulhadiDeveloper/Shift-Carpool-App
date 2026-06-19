@@ -7,6 +7,7 @@ export interface IUser extends Document {
   passwordHash: string;
   phone: string;
   rating: number;
+  totalRatings: number;
   createdAt: Date;
 }
 
@@ -17,6 +18,7 @@ const UserSchema: Schema = new Schema({
   passwordHash: { type: String, required: true }, // We will hash passwords in production
   phone: { type: String, required: true, trim: true },
   rating: { type: Number, default: 5.0 },
+  totalRatings: { type: Number, default: 0 },
   createdAt: { type: Date, default: Date.now }
 });
 

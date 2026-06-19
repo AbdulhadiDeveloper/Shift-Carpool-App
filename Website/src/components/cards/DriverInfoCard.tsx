@@ -1,13 +1,14 @@
-import { Star } from 'lucide-react';
+import RatingBadge from '../ui/RatingBadge';
 import Avatar from '../ui/Avatar';
 
 interface DriverInfoCardProps {
   name: string;
   phone: string;
+  rating?: number;
   className?: string;
 }
 
-export default function DriverInfoCard({ name, phone, className = '' }: DriverInfoCardProps) {
+export default function DriverInfoCard({ name, phone, rating, className = '' }: DriverInfoCardProps) {
   return (
     <div className={`flex flex-col md:flex-row items-center justify-between p-6 bg-surface-container-lowest border border-outline-variant rounded-lg gap-4 ${className}`}>
       <div className="flex items-center gap-4 w-full">
@@ -17,10 +18,9 @@ export default function DriverInfoCard({ name, phone, className = '' }: DriverIn
             Your Driver
           </span>
           <p className="font-title-md text-title-md text-primary font-medium">{name}</p>
-          <div className="flex items-center gap-1 mt-1">
-            <Star size={16} className="text-primary fill-primary" />
-            <span className="font-label-caps text-label-caps text-primary tracking-wider">4.9</span>
-            <span className="text-outline-variant">•</span>
+          <div className="flex items-center gap-2 mt-1">
+            <RatingBadge rating={rating} />
+            {rating !== undefined && <span className="text-outline-variant">•</span>}
             <span className="font-body-sm text-body-sm text-on-surface-variant">{phone}</span>
           </div>
         </div>

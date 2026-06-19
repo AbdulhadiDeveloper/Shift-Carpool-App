@@ -14,6 +14,7 @@ export default function ManageRoutePage() {
   const { myRides, fetchMyRides, isLoading } = useRides();
   const [ride, setRide] = useState<Ride | null>(null);
   const [cancelling, setCancelling] = useState(false);
+  const [completing, setCompleting] = useState(false);
 
   useEffect(() => {
     fetchMyRides();
@@ -43,6 +44,21 @@ export default function ManageRoutePage() {
       toast.error(error.response?.data?.error || 'Failed to cancel route');
     } finally {
       setCancelling(false);
+    }
+  };
+
+  const handleCompleteRoute = async () => {
+    if (!ride || completing) return;
+    
+    setCompleting(true);
+    try {
+      await rideService.completeRide(ride._id);
+      toast.success('Route marked as completed!');
+      navigate('/journeys');
+    } catch (error: any) {
+      toast.error(error.response?.data?.error || 'Failed to complete route');
+    } finally {
+      setCompleting(false);
     }
   };
 
@@ -122,13 +138,25 @@ export default function ManageRoutePage() {
             </div>
           </div>
 
-          <button
-            onClick={handleCancelRoute}
-            disabled={cancelling}
-            className="w-full py-4 border border-error text-error rounded-lg font-title-md text-title-md hover:bg-error-container hover:text-on-error-container transition-colors duration-200 disabled:opacity-50"
-          >
-            {cancelling ? 'Cancelling...' : 'Cancel Active Route'}
-          </button>
+          <div className="flex flex-col gap-3 mt-4">
+            {ride.status === 'active' && (
+              <button
+                onClick={handleCompleteRoute}
+                disabled={completing}
+                className="w-full py-4 bg-primary text-on-primary rounded-lg font-title-md text-title-md hover:opacity-90 transition-opacity duration-200 disabled:opacity-50"
+              >
+                {completing ? 'Completing...' : 'Mark Route as Completed'}
+              </button>
+            )}
+
+            <button
+              onClick={handleCancelRoute}
+              disabled={cancelling}
+              className="w-full py-4 border border-error text-error rounded-lg font-title-md text-title-md hover:bg-error-container hover:text-on-error-container transition-colors duration-200 disabled:opacity-50"
+            >
+              {cancelling ? 'Cancelling...' : 'Cancel Active Route'}
+            </button>
+          </div>
         </div>
 
         {/* Right Column: Passengers */}
@@ -138,9 +166,18 @@ export default function ManageRoutePage() {
           </h2>
 
           <div className="flex flex-col gap-4">
-            {ride.passengers.map((_, idx) => (
-              <PassengerCard key={idx} name={`Passenger ${idx + 1}`} pickupLocation={ride.origin} />
-            ))}
+            {ride.passengers.map((p: any, idx: number) => {
+              const name = typeof p === 'string' ? `Passenger ${idx + 1}` : p.fullName;
+              const phone = typeof p === 'string' ? '' : p.phone;
+              return (
+                <PassengerCard 
+                  key={typeof p === 'string' ? p : p._id} 
+                  name={name} 
+                  phone={phone}
+                  pickupLocation={ride.origin} 
+                />
+              );
+            })}
 
             {emptySeatsArray.map((_, idx) => (
               <div key={`empty-${idx}`} className="flex items-center justify-center p-4 rounded-lg bg-surface-container-lowest border border-dashed border-outline-variant h-24">

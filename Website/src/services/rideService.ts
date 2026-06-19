@@ -33,6 +33,16 @@ export const rideService = {
     return data;
   },
 
+  completeRide: async (id: string): Promise<Ride> => {
+    const { data } = await api.patch(`/api/rides/${id}/complete`);
+    return data;
+  },
+
+  rateRide: async (id: string, rating: number): Promise<any> => {
+    const { data } = await api.post(`/api/rides/${id}/rate`, { rating });
+    return data;
+  },
+
   cancelRide: async (id: string): Promise<Ride> => {
     const { data } = await api.patch(`/api/rides/${id}/cancel`);
     return data;

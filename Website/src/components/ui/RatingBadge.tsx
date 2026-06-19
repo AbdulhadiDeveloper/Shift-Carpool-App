@@ -6,7 +6,9 @@ interface RatingBadgeProps {
   className?: string;
 }
 
-export default function RatingBadge({ rating = 5.0, reviews, className = '' }: RatingBadgeProps) {
+export default function RatingBadge({ rating, reviews, className = '' }: RatingBadgeProps) {
+  if (rating === undefined) return null;
+
   return (
     <div className={`flex items-center gap-1 ${className}`}>
       <Star size={16} className="text-primary fill-primary" />

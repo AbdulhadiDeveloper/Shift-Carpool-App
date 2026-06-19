@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import Ride from '../models/Ride';
 import User from '../models/User';
 import { protect, AuthRequest } from '../middleware/auth';
+import { validate } from '../middleware/validate';
+import { rideSchema } from '../utils/schemas';
 
 const router = express.Router();
 
@@ -10,6 +12,7 @@ const router = express.Router();
 router.get('/', protect, async (req, res) => {
   try {
     const rides = await Ride.find({ availableSeats: { $gt: 0 }, status: 'active' })
+                            .populate('passengers', 'fullName phone')
                             .sort({ createdAt: -1 });
     res.status(200).json(rides);
   } catch (error) {
@@ -31,7 +34,9 @@ router.get('/my', protect, async (req: AuthRequest, res) => {
         { driverId: userObjectId },
         { passengers: userObjectId }
       ]
-    }).sort({ departureTime: 1 }); // Sort by upcoming
+    })
+    .populate('passengers', 'fullName phone')
+    .sort({ departureTime: 1 }); // Sort by upcoming
     
     res.status(200).json(rides);
   } catch (error) {
@@ -40,9 +45,9 @@ router.get('/my', protect, async (req: AuthRequest, res) => {
 });
 
 // POST: Broadcast a new route (Driver Mode)
-router.post('/', protect, async (req: AuthRequest, res) => {
+router.post('/', protect, validate(rideSchema), async (req: AuthRequest, res) => {
   try {
-    const { driverName, origin, destination, departureTime, totalSeats } = req.body;
+    const { origin, destination, departureTime, totalSeats } = req.body;
     
     // driverId should come from the authenticated user
     const driverId = req.user?.id;
@@ -56,9 +61,14 @@ router.post('/', protect, async (req: AuthRequest, res) => {
        return res.status(404).json({ error: 'Driver profile not found' });
     }
     
+    // Ensure departure time is in the future
+    if (new Date(departureTime) < new Date()) {
+      return res.status(400).json({ error: 'Departure time must be in the future.' });
+    }
+    
     const newRide = new Ride({
       driverId,
-      driverName,
+      driverName: user.fullName,
       driverPhone: user.phone,
       origin,
       destination,
@@ -84,9 +94,9 @@ router.patch('/:id/join', protect, async (req: AuthRequest, res) => {
   }
 
   try {
-    // Atomic update: only decrement IF availableSeats is greater than 0 AND user is not already a passenger
+    // Atomic update: only decrement IF availableSeats is greater than 0, user is not already a passenger, AND user is not the driver
     const updatedRide = await Ride.findOneAndUpdate(
-      { _id: id, availableSeats: { $gt: 0 }, passengers: { $ne: userId } },
+      { _id: id, availableSeats: { $gt: 0 }, passengers: { $ne: userId }, driverId: { $ne: userId } },
       { 
         $inc: { availableSeats: -1 }, // Decreases available seats by 1
         $push: { passengers: userId } // Adds user to passenger list
@@ -184,6 +194,63 @@ router.patch('/:id/cancel', protect, async (req: AuthRequest, res) => {
     res.status(200).json(updatedRide);
   } catch (error) {
     res.status(500).json({ error: 'Transaction failed.' });
+  }
+});
+
+// PATCH: Mark a route as completed (Driver mode)
+router.patch('/:id/complete', protect, async (req: AuthRequest, res) => {
+  const { id } = req.params;
+  const userId = req.user?.id;
+
+  if (!userId) return res.status(401).json({ error: 'User not authenticated' });
+
+  try {
+    const updatedRide = await Ride.findOneAndUpdate(
+      { _id: id, driverId: userId, status: 'active' },
+      { status: 'completed' },
+      { returnDocument: 'after' }
+    );
+
+    if (!updatedRide) {
+      return res.status(400).json({ error: 'Not authorized or ride already completed/cancelled.' });
+    }
+
+    res.status(200).json(updatedRide);
+  } catch (error) {
+    res.status(500).json({ error: 'Transaction failed.' });
+  }
+});
+
+// POST: Rate a driver (Passenger mode)
+router.post('/:id/rate', protect, async (req: AuthRequest, res) => {
+  const { id } = req.params;
+  const userId = req.user?.id;
+  const { rating } = req.body;
+
+  if (!userId) return res.status(401).json({ error: 'User not authenticated' });
+  if (rating < 1 || rating > 5) return res.status(400).json({ error: 'Rating must be between 1 and 5' });
+
+  try {
+    const ride = await Ride.findOne({ _id: id, status: 'completed', passengers: userId });
+    if (!ride) {
+      return res.status(400).json({ error: 'You can only rate completed rides you were a passenger on.' });
+    }
+
+    const driver = await User.findById(ride.driverId);
+    if (!driver) {
+      return res.status(404).json({ error: 'Driver not found.' });
+    }
+
+    const newTotalRatings = driver.totalRatings + 1;
+    const newRating = ((driver.rating * driver.totalRatings) + rating) / newTotalRatings;
+
+    driver.rating = Number(newRating.toFixed(2));
+    driver.totalRatings = newTotalRatings;
+    await driver.save();
+
+    res.status(200).json({ message: 'Rating submitted successfully', driverRating: driver.rating });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to submit rating.' });
   }
 });
 

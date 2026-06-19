@@ -2,6 +2,8 @@ import express from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
+import { validate } from '../middleware/validate';
+import { registerSchema, loginSchema } from '../utils/schemas';
 
 const router = express.Router();
 
@@ -11,12 +13,8 @@ const generateToken = (id: string) => {
 };
 
 // POST /api/auth/register
-router.post('/register', async (req, res) => {
+router.post('/register', validate(registerSchema), async (req, res) => {
     const { fullName, email, password, phone } = req.body;
-
-    if (!fullName || !email || !password || !phone) {
-        return res.status(400).json({ error: 'Please provide all required fields.' });
-    }
 
     try {
         // Check if user exists
@@ -40,6 +38,8 @@ router.post('/register', async (req, res) => {
             fullName: user.fullName,
             email: user.email,
             phone: user.phone,
+            rating: user.rating,
+            totalRatings: user.totalRatings,
             token: generateToken(user._id.toString())
         });
     } catch (error: any) {
@@ -52,12 +52,8 @@ router.post('/register', async (req, res) => {
 });
 
 // POST /api/auth/login
-router.post('/login', async (req, res) => {
+router.post('/login', validate(loginSchema), async (req, res) => {
     const { email, password } = req.body;
-
-    if (!email || !password) {
-        return res.status(400).json({ error: 'Please provide email and password.' });
-    }
 
     try {
         // Check for user
@@ -73,6 +69,8 @@ router.post('/login', async (req, res) => {
             fullName: user.fullName,
             email: user.email,
             phone: user.phone,
+            rating: user.rating,
+            totalRatings: user.totalRatings,
             token: generateToken(user._id.toString())
         });
     } catch (error: any) {
