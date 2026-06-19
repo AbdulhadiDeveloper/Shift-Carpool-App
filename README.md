@@ -1,6 +1,6 @@
 # Shift Carpool 🚗✨
 
-Shift is a minimalist, full-stack mobile ridesharing application built with a focus on "Quiet Luxury." It allows users to seamlessly switch between **Driver** and **Rider** modes, offering a high-end, monochromatic experience for daily commutes.
+Shift is a minimalist, full-stack ridesharing web application built with a focus on "Quiet Luxury." It allows users to seamlessly switch between **Driver** and **Rider** modes, offering a high-end, monochromatic experience for daily commutes.
 
 ## 🌟 Key Features
 
@@ -8,12 +8,21 @@ Shift is a minimalist, full-stack mobile ridesharing application built with a fo
 -   **Quiet Luxury UI:** High-fidelity "Bento Box" design system with glassmorphism overlays and tonal dark themes.
 -   **Secure Authentication:** JWT-based auth with encrypted local session persistence.
 -   **Atomic Reservations:** Real-time seat booking with race-condition protection.
--   **Journey Management:** Complete control over upcoming trips—drivers can edit route details/capacity, and riders can relinquish seats.
--   **WhatsApp Coordinator:** One-tap deep linking to coordinate pickups directly with drivers via WhatsApp.
+-   **Journey Management:** Complete control over upcoming trips—drivers can complete or cancel routes, and riders can relinquish seats.
+-   **Dynamic Rating System:** Built-in passenger-to-driver rating system that calculates rolling averages dynamically.
+-   **WhatsApp Coordinator:** One-tap deep linking to coordinate pickups directly with drivers via WhatsApp or Phone call.
 
 ---
 
 ## 🛠 Tech Stack & Versions
+
+### Frontend (Website)
+-   **Framework:** React v19.2 (Bootstrapped with Vite v8)
+-   **Navigation:** React Router DOM v7
+-   **State & Forms:** React Hook Form + Zod Schema Validation
+-   **Styling:** Tailwind CSS v4
+-   **UI Components:** Lucide React (Icons), Sonner (Toasts)
+-   **HTTP Client:** Axios (with Interceptors for JWT auth)
 
 ### Frontend (Mobile)
 -   **Framework:** Expo SDK 54.0.0 (React Native 0.76.x)
@@ -25,16 +34,17 @@ Shift is a minimalist, full-stack mobile ridesharing application built with a fo
 
 ### Backend (API)
 -   **Runtime:** Node.js v22.x
--   **Framework:** Express.js v5.2.1
--   **Database:** MongoDB Atlas (Mongoose ODM v9.6.3)
--   **Security:** JWT (jsonwebtoken v9.0.3) & bcryptjs v3.0.3
+-   **Framework:** Express.js v5.2
+-   **Database:** MongoDB Atlas (Mongoose ODM v9.6)
+-   **Security:** JWT (jsonwebtoken) & bcryptjs
+-   **Validation:** Zod (Strict Payload Schemas)
 -   **Environment:** Vercel Serverless Functions
 
 ---
 
 ## 🚀 Getting Started
 
-### 1. Backend Setup (Node.js)
+### 1. Backend Setup
 
 1.  Navigate to the backend directory:
     ```bash
@@ -55,7 +65,27 @@ Shift is a minimalist, full-stack mobile ridesharing application built with a fo
     npm run dev
     ```
 
-### 2. Frontend Setup (Expo)
+### 2. Frontend Setup (Website)
+
+1.  Navigate to the website directory:
+    ```bash
+    cd Website
+    ```
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+3.  Create a `.env` file in the `Website/` root:
+    ```env
+    VITE_API_URL=http://localhost:3000
+    ```
+4.  Start the development server:
+    ```bash
+    npm run dev
+    ```
+5. Open your browser to the local URL provided by Vite (usually `http://localhost:5173`).
+
+### 3. Frontend Setup (Mobile / Expo)
 
 1.  Navigate to the mobile directory:
     ```bash
@@ -73,12 +103,10 @@ Shift is a minimalist, full-stack mobile ridesharing application built with a fo
     ```bash
     npx expo start
     ```
-
 5.  Start the app in expo go app:
     ```bash
     npx expo start --tunnel --clear
     ```
-    
 6.  Open the **Expo Go** app on your iOS/Android device and scan the QR code.
 
 ---
@@ -87,8 +115,8 @@ Shift is a minimalist, full-stack mobile ridesharing application built with a fo
 
 Both environments include Jest for automated testing.
 
--   **Backend:** `cd backend && npm test` (Includes MongoDB Memory Server tests)
--   **Frontend:** `cd mobile && npm test`
+-   **Backend:** `cd backend && npx jest` (Includes MongoDB Memory Server and Supertest integration tests)
+-   **Frontend:** `cd Website && npm test`
 
 ---
 
@@ -103,4 +131,4 @@ Shift adheres to a strict monochromatic palette:
 ---
 
 ## 🔒 Security Notice
-The backend uses a **Serverless Connection Guard** middleware to prevent race conditions during MongoDB connection cycles on Vercel. All routes (except Login/Register) are protected by a JWT Bearer token validation layer.
+The backend relies on strict `Zod` validation schemas for every endpoint. All routes (except Login/Register) are protected by a JWT Bearer token validation layer. Atomic updates (`findOneAndUpdate`) ensure no two passengers can book the same seat at the exact same millisecond.

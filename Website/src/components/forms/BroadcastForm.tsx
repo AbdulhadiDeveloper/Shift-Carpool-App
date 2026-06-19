@@ -6,6 +6,7 @@ import SeatCounter from '../ui/SeatCounter';
 import { rideService } from '../../services/rideService';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+import { useAuth } from '../../hooks/useAuth';
 
 export default function BroadcastForm() {
   const navigate = useNavigate();
@@ -21,9 +22,12 @@ export default function BroadcastForm() {
     },
   });
 
+  const { user } = useAuth();
+
   const onSubmit = async (data: BroadcastFormData) => {
     try {
-      await rideService.createRide(data);
+      const payload = { ...data, driverName: user?.fullName || 'Driver' };
+      await rideService.createRide(payload as any);
       toast.success('Route broadcasted successfully!');
       navigate('/journeys');
     } catch (error: any) {
